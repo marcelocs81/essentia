@@ -39,8 +39,8 @@ define('ENV_DB_NAME',       'essentia');
 define('ENV_DB_USER',       'root');
 define('ENV_DB_PASSWORD',   '');
 
-define('ENV_ENABLE_CACHE_ZF', false);
-define('ENV_ENABLE_MODULE_MAP_CACHE_ZF', false);
+define('ENV_ENABLE_CACHE_ZF', true);
+define('ENV_ENABLE_MODULE_MAP_CACHE_ZF', true);
 define('ENV_CACHE_DIR', 'data/cache');
 
 define('ENV_TYPE_CACHE_DOCTRINE', 'array');

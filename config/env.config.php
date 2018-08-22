@@ -8,5 +8,5 @@
 
 //define('AMBIENTE', 'localhost');
 //define('AMBIENTE', 'homologation');
-define('AMBIENTE', 'development');
-////define('AMBIENTE', 'production');
+//define('AMBIENTE', 'development');
+define('AMBIENTE', 'production');
