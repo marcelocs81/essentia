@@ -8,7 +8,7 @@
  *      sendo o vaor definido no APPLICATION_ENV determina o arquivo a ser incluido e caso não encontre é carregado o arquivo default.php
  *
  */
-//'udo'           => '357375',
+
 ini_set("soap.wsdl_cache_enabled", 1);
 ini_set('soap.wsdl_cache_dir', BASE_PATH . '/data/cache');
 ini_set('default_socket_timeout', 720);
