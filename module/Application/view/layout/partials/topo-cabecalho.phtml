@@ -1,0 +1,28 @@
+<?php
+
+$diffEnv = '';
+if (AMBIENTE == ENV_HOMOLOGACAO) {
+    $diffEnv = 'style="background-image:url(\'' . BASE_URL . '/img/marca-hml.png\'); background-repeat: repeat-x;"';
+} elseif (AMBIENTE == ENV_DESENVOLVIMENTO) {
+    $diffEnv = 'style="background-image:url(\'' . BASE_URL . '/img/marca-dev.png\'); background-repeat: repeat-x;"';
+} elseif (AMBIENTE == ENV_LOCALHOST) {
+    $diffEnv = 'style="background-image:url(\'' . BASE_URL . '/img/marca-local.png\'); background-repeat: repeat-x;"';
+}
+
+?>
+
+<div id="topo-intelbras" <?= $diffEnv; ?> class="scroll-left-fixed">
+    <div class="container">
+
+        <div class="col-xs-4 no-padding-left">
+            <h1 class="topo-title">
+                <?= $this->translate('Portal do Fornecedor'); ?>
+            </h1>
+        </div>
+
+        <div class="col-xs-8 pull-left carrinho-header no-padding">
+            <?= '';  ?>
+        </div>
+
+    </div>
+</div>

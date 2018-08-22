@@ -1,0 +1,17 @@
+/public_html/tools
+*.swp
+vendor/
+vendor-old/
+composer.phar
+composer.lock
+.idea
+.settings
+config/env.config.php
+testes/
+old/
+*.sql
+**/_notes/
+public_html/data/mapas-temp/**/*
+/node_modules
+public_html/temp
+public_html/temp/**/*

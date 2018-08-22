@@ -1,0 +1,88 @@
+<?php header('Content-Type: text/html; charset=UTF-8'); ?>
+<!-- TODO navigation -->
+<?php echo $this->doctype(); ?>
+
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+    <meta name="description"
+          content="A Aquaeris Engenharia e Soluções Ambientais LTDA é uma empresa que atua nas área de hidrologia, telemetria e meteorologia. Tem sua sede em Florianópolis - SC - Brasil."/>
+    <meta name="keywords"
+          content="Aquaeris, Engenharia, Soluções ambientais, Meteorologia, Climatologia, Hidrologia, Hidrometria, Telemetria, Transmissão de dados, Dados ambientais, Levantamento de impacto ambiental, Estudo de impacto ambiental, EIA, Previsão do tempo, Monitoramento do tempo, Qualidade da, água, Resolução ANA/ANEEL nº 03/2010, Previsão quantitativa de chuva."/>
+    <meta name="generator" content="2016.7.13.1200"/>
+
+    <?php echo $this->partial('layout/partials/header'); ?>
+
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+        style="background-color: #bdab74 !important;" >
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#app-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" style="padding: 0;">
+                <img src="/images/logo.png"/>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+
+                <li><a href="<?php echo $this->url('home'); ?>" title="Início"><i class="fa fa-lg fa-fw fa-home"></i> Início</a></li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu Principal"><i class="glyphicon glyphicon-align-justify"></i> Menu <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clientes</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo $this->url('cliente', array('action' => 'index')); ?>" title="Lista de Clientes">Lista Clientes</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?php echo $this->url('cliente', array('action' => 'editar')); ?>">Novo Cliente</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<div class="corpo">
+
+    <!-- MAIN CONTENT -->
+    <div class="conteudo container" style="">
+        <?php echo $this->content; ?>
+    </div>
+
+    <div class="rodape">
+        <div class="text-center col-xs-12"><?php echo $this->config('copyright'); ?> - <?php echo $this->config('version'); ?></div>
+    </div>
+
+
+    <!-- END MAIN CONTENT -->
+</div>
+<?php echo $this->inlineScript() ?>
+<div class="modalAjax"></div>
+
+
+<?php echo $this->partial('partials/modal-image'); ?>
+
+<?= $this->partial('layout/partials/modal-loading') ?>
+
+</body>
+</html>

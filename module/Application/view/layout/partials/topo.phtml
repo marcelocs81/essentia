@@ -1,0 +1,54 @@
+<div class="scroll-left-fixed">
+    <ul style="margin: 10px 5px" class="menu-lang pull-right no-padding">
+        <li>
+            <img src="/images/flags/lang/<?= $localeSelecionado ?>.png" />
+            <img src="/images/icons/arrow/bottom-white.png" />
+            <ul>
+                <?php
+                foreach(\Application\Form\PickList\LocalePicklist::getArray() as $locale):
+                    if ($locale == $localeSelecionado) {
+                        continue;
+                    }
+                    ?>
+
+                    <li class="item-lang">
+                        <a href="?lang=<?= $locale ?>" style="display: block; box-sizing: content-box">
+                            <img src="/images/flags/lang/<?= $locale ?>.png" />
+                        </a>
+                    </li>
+
+                <?php endforeach ?>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="topo" class="scroll-left-fixed">
+    <div class="container">
+        <a href="<?= $this->url('home'); ?>">
+            <img src="/images/logos/intelbras-white.png" style="margin-top: 7px; margin-left: 16px" class="pull-left" />
+        </a>
+
+        <ul class="pull-right wrapper-topo-menu">
+            <?php echo $this->aviso(); ?>
+
+            <li>
+                <a class="btn-usuario" href=<?php echo $this->url('meus-dados'); ?>>
+                    <img src="<?php echo $this->basePath() . "/images/icons/user.jpg" ?>">
+                    <span class="font-topo"><?php echo $this->identity()->usuario->getNomeCompleto();?></span>
+                </a>
+            </li>
+
+            <li class="topo-divisor"></li>
+
+            <li>
+                <a class="btn-sair" href="<?php echo $this->url("logout") ?>">
+                    <img src="<?php echo $this->basePath() . "/img/logout.jpg" ?>" alt="Logout" style="margin-left: 0 !important;">
+                    <span class="font-topo"><?php echo $this->translate("Sair") ?></span>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</div>

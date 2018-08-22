@@ -1,0 +1,40 @@
+<?php if ($this->pageCount > 1): ?>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
+    <nav>
+      <ul class="pagination">
+        <?php if($this->current != 1): ?>
+        <li><a href="<?= $this->url(null, array('op1' => 1), true) ?>">&laquo;</a></li>
+        <?php else: ?>
+        <li class="disabled"><a href="<?= $this->url(null, array('op1' => 1), true) ?>">&laquo;</a></li>
+        <?php endif;?>        
+        <!-- Previous page link -->
+        <?php if (isset($this->previous)): ?>
+        <li><a href="<?= $this->url(null, array('op1' => $this->previous), true) ?>">&lt;</a></li>
+        <?php else: ?>
+        <li class="disabled"><a href="#" class="disabled">&lt;</a></li>
+        <?php endif; ?>        
+        <!-- Numbered page links -->
+        <?php foreach ($this->pagesInRange as $page): ?>
+        <?php if ($page != $this->current): ?>
+        <li><a href="<?= $this->url(null, array('op1' => $page), true) ?>"><?php echo $page; ?></a>
+          <?php else: ?>
+        <li class="active"><a href="#"><?php echo $page; ?> </a></li>
+        <?php endif; ?>
+        <?php endforeach; ?>        
+        <!-- Next page link -->        
+        <?php if (isset($this->next)): ?>
+        <li><a href="<?= $this->url(null, array('op1' => $this->next), true) ?>">&gt;</a></li>
+        <?php else: ?>
+        <li class="disabled"><a href="#">&gt;</a></li>
+        <?php endif; ?>
+        <?php if($this->current != $this->pageCount): ?>
+        <li><a href="<?= $this->url(null, array('op1' => $this->pageCount), true) ?>">&raquo;</a></li>
+        <?php else: ?>
+        <li class="disabled"><a href="<?= $this->url(null, array('op1' => 1), true) ?>">&raquo;</a></li>
+        <?php endif;?>
+      </ul>
+    </nav>
+  </div>
+</div>
+<?php endif; ?>

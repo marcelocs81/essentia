@@ -1,0 +1,131 @@
+<div id="menu-extranet" class="scroll-left-fixed">
+    <div class="container">
+        <nav class="navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <!--                 <div class="navbar-header"> -->
+            <!--                     <button type="button" class="navbar-toggle btn btn-xs" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> -->
+            <!--                         <span class="icon-bar"></span> -->
+            <!--                         <span class="icon-bar"></span> -->
+            <!--                         <span class="icon-bar"></span> -->
+            <!--                     </button> -->
+            <!--                 </div> -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="navbar-default" id="bs-example-navbar-default-1">
+                <!-- Menu nível 1 -->
+                <ul class="nav navbar-nav navbar-left">
+                    <?php foreach ($this->identity()->menus as $chaveModulo => $menuRaiz) : ?>
+                        <?php if ($chaveModulo != 'Admin') : ?>
+                            <?php foreach ($menuRaiz as $chave => $menusNivel2): ?>
+                                <?php
+                                $chaveExplode = explode("/", $chave);
+                                list(
+                                    $moduloTmp,
+                                    $controllerTmp,
+                                    $actionTmp,
+                                    $iconeTmp,
+                                    $nomeTmp,
+                                    $rotaTmp,
+                                    $idTmp
+                                    ) = $chaveExplode;
+
+                                $chaveExplodeLength = count($chaveExplode);
+                                if ($chaveExplodeLength > 7) {
+                                    $idTmp   = end($chaveExplode);
+                                    $rotaTmp = implode(
+                                        '/',
+                                        array_slice(
+                                            $chaveExplode,
+                                            5,
+                                            $chaveExplodeLength - 6
+                                        )
+                                    );
+                                }
+
+                                $controllerTmp = str_replace("Controller", "", $controllerTmp);
+
+                                ?>
+                                <?php if (count($menusNivel2) > 0 || $rotaTmp != '#') : ?>
+                                    <li class="<?php echo (count($menusNivel2)) ? 'dropdown' : ''; ?> ">
+
+                                        <a id="menu_<?php echo $idTmp; ?>" <?php echo(count($menusNivel2) ? 'class="dropdown-toggle" data-toggle="dropdown"' : ''); ?>
+                                           href="<?php echo $this->url($rotaTmp, array("action" => $actionTmp)); ?>">
+                                            <?php echo $this->translate($nomeTmp); ?>
+                                        </a>
+                                        <?php if (count($menusNivel2)): ?>
+                                            <!-- Menu nível 2 -->
+                                            <ul class="dropdown-menu">
+                                                <?php foreach ($menusNivel2 as $chave2 => $menuNivel3): ?>
+                                                    <?php
+                                                    $chaveExplode2 = explode("/", $chave2);
+                                                    list(
+                                                        $moduloTmp2,
+                                                        $controllerTmp2,
+                                                        $actionTmp2,
+                                                        $iconeTmp2,
+                                                        $nomeTmp2,
+                                                        $rotaTmp2,
+                                                        $idTmp2
+                                                        ) = $chaveExplode2;
+
+                                                    $chaveExplodeLength2 = count($chaveExplode2);
+                                                    if ($chaveExplodeLength2 > 7) {
+                                                        $idTmp2   = end($chaveExplode2);
+                                                        $rotaTmp2 = implode(
+                                                            '/',
+                                                            array_slice(
+                                                                $chaveExplode2,
+                                                                5,
+                                                                $chaveExplodeLength2 - 6
+                                                            )
+                                                        );
+                                                    }
+
+                                                    $controllerTmp2 = str_replace("Controller", "", $controllerTmp2);
+                                                    ?>
+                                                    <li>
+                                                        <a id="submenu_<?php echo $idTmp2; ?>" href="<?php echo $this->url(str_replace('\\', '/', $rotaTmp2), array("action" => $actionTmp2)); ?>">
+                                                            <?php echo $this->translate($nomeTmp2) ?>
+                                                        </a>
+                                                        <?php if (count($menuNivel3)): ?>
+                                                            <!-- Menu nivel 3 -->
+                                                            <ul class="dropdown-menu-extensible">
+                                                                <?php foreach ($menuNivel3 as $item): ?>
+                                                                    <?php
+                                                                    list($moduloTmp3, $controllerTmp3, $actionTmp3, $iconeTmp3, $nomeTmp3, $rotaTmp3, $idTmp3) = explode("/", $item);
+                                                                    $controllerTmp3 = str_replace("Controller", "", $controllerTmp3);
+                                                                    ?>
+                                                                    <li class="submenu">
+                                                                        <a id="submenu_<?php echo $idTmp3; ?>"
+                                                                           href="<?php echo $this->url(str_replace('\\', '/', $rotaTmp3), array("action" => $actionTmp3)); ?>" style="">
+                                                                            <?php echo $this->translate($nomeTmp3) ?>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="divisor"></li>
+                                                                <?php endforeach; ?>
+                                                            </ul>
+                                                            <!-- Fim menu nivel 3 -->
+                                                        <?php endif ?>
+                                                    </li>
+                                                    <li class="divisor"></li>
+                                                <?php endforeach ?>
+                                            </ul>
+                                            <!-- Fim menu nível 2 -->
+                                        <?php endif ?>
+
+                                    </li>
+                                <?php endif; ?>
+
+                            <?php endforeach ?>
+
+                        <?php endif; ?>
+
+                    <?php endforeach ?>
+
+                </ul>
+                <!-- Fim menu nível 1 -->
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,156 @@
+<?php
+$this->headTitle($this->conf['titulo']);
+
+/** @var \Application\Entity\Cliente $cliente */
+$cliente = $this->cliente;
+
+$idCliente = $cliente->getId();
+if (empty($idCliente)) {
+    $idCliente = 0;
+}
+
+$fotoPath = BASE_PATH . DS . 'public_html' . DS . 'images' . DS . 'sem-foto.png';
+$width = 150;
+if($cliente->possuiFoto()){
+    $fotoPath = BASE_PATH . $cliente->getFoto();
+}
+$urlFoto = $this->url(
+    'imagem',
+    [
+        'path' => base64_encode($fotoPath),
+        'width' => $width
+    ]
+);
+
+$urlCancelar = $this->url(
+    'cliente',
+    [
+        'action' => 'index',
+    ]
+);
+
+$form = $this->form;
+$urlAction = $this->url(
+    'cliente',
+    [
+        'action' => 'editar',
+        'identificador' => $idCliente
+    ]
+);
+
+$form->setAttribute('action', $urlAction);
+
+$fieldset = $form->get('cliente');
+
+$form->prepare();
+
+echo $this->headScript()->prependFile($this->basePath() . '/assets/js/tinymce-editor.js')
+    ->prependFile($this->basePath() . '/library/tinymce/tinymce.min.js');
+
+?>
+<div class="bs-callout bs-callout-info">
+    <h4><?php echo $this->escapeHtml($this->conf['titulo']); ?></h4>
+
+    <p><?php echo $this->escapeHtml($this->conf['texto']); ?></p>
+</div>
+
+<div class="mensagens-alerta">
+    <div class="row">
+        <?= $this->alertMessage() ?>
+    </div>
+</div>
+
+<div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <?php echo $this->form()->openTag($form); ?>
+        <?php echo $this->formHidden($fieldset->get('id')); ?>
+
+        <div class="row pull-right">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-right: 50px;">
+                <img src="<?php echo $urlFoto; ?>" />
+            </div>
+        </div>
+
+        <div class="row">
+            <?php echo $this->partial(
+                'partials/form-group',
+                [
+                    'fieldset' => $fieldset->get('nome'),
+                    'divClass' => 'col-xs-12 col-sm-12 col-md-6 col-lg-6',
+                ]
+            ); ?>
+            <?php echo $this->partial(
+                'partials/form-group',
+                [
+                    'fieldset' => $fieldset->get('email'),
+                    'divClass' => 'col-xs-12 col-sm-12 col-md-6 col-lg-6',
+                ]
+            ); ?>
+        </div>
+        <div class="row">
+            <?php echo $this->partial(
+                'partials/form-group',
+                [
+                    'fieldset' => $fieldset->get('telefone'),
+                    'divClass' => 'col-xs-12 col-sm-12 col-md-6 col-lg-6',
+                ]
+            ); ?>
+
+            <?php echo $this->partial(
+                'partials/form-group',
+                [
+                    'fieldset' => $fieldset->get('regiao'),
+                    'divClass' => 'col-xs-12 col-sm-12 col-md-6 col-lg-6',
+                ]
+            ); ?>
+        </div>
+        <div class="row">
+            <?php echo $this->partial(
+                'partials/form-group',
+                [
+                    'fieldset' => $fieldset->get('tipo'),
+                    'divClass' => 'col-xs-12 col-sm-12 col-md-6 col-lg-6',
+                ]
+            ); ?>
+
+            <?php echo $this->partial(
+                'partials/form-group',
+                [
+                    'fieldset' => $fieldset->get('cpfCnpj'),
+                    'divClass' => 'col-xs-12 col-sm-12 col-md-6 col-lg-6',
+                ]
+            ); ?>
+        </div>
+
+        <div class="row">
+            <?php echo $this->partial(
+                'partials/form-group',
+                [
+                    'fieldset' => $fieldset->get('fotoFile'),
+                    'divClass' => 'col-xs-12 col-sm-12 col-md-6 col-lg-6',
+                ]
+            ); ?>
+
+            <?php echo $this->partial(
+                'partials/form-group',
+                [
+                    'fieldset' => $fieldset->get('ativo'),
+                    'divClass' => 'col-xs-12 col-sm-12 col-md-6 col-lg-6',
+                ]
+            ); ?>
+        </div>
+
+        <div class="col-sm-4 col-sm-offset-8">
+            <button class="btn btn-primary" type="submit">
+                <i class="glyphicon glyphicon-ok"></i> <?php echo $this->translate('Cadastrar'); ?>
+            </button>
+
+            <a href="<?php echo $urlCancelar; ?>" class="btn btn-danger">
+                <i class="glyphicon glyphicon-remove"></i> <?php echo $this->translate('Cancelar'); ?>
+            </a>
+
+        </div>
+
+        <?php echo $this->form()->closeTag(); ?>
+    </article>
+</div>

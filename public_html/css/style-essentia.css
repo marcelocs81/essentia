@@ -1,0 +1,144 @@
+html, body {
+     margin: 0;
+     padding: 0;
+     height: 100%;
+ }
+
+header{
+    min-height: 50px;
+}
+
+.corpo {
+    min-height: 100%;
+    position: relative;
+    margin: 10px 10px;
+}
+
+.conteudo-cliente{
+    padding-bottom: 30px; /* Mesma Altura do Rodapé */
+}
+
+.conteudo {
+    padding-top: 55px;
+    padding-bottom: 30px; /* Mesma Altura do Rodapé */
+}
+
+.rodape {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px; /* Mesma Altura do Rodapé */;
+    padding-top: 50px;
+    z-index: -9999;
+}
+
+img.view-img {
+    cursor: pointer;
+}
+
+.page-header{
+    margin: 20px 0 20px
+}
+
+.mensagens-alerta {
+    margin: 20px 50px;
+}
+
+label.required:before {
+    display: inline;
+    float: left;
+    padding-left: 20px;
+    height: 15px;
+    width: 10px;
+    background-image: url("../images/asterisco.png") !important;
+    background-repeat: no-repeat;
+    content: '';
+}
+
+.valign-middle {
+    vertical-align: middle !important;
+}
+
+
+.spacer {
+    margin-top: 16px; /* define margin as you see fit */
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+/* Base styles (regardless of theme) */
+.bs-callout {
+    margin: 10px 0;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
+}
+.bs-callout h4 {
+    margin-top: 0;
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code,
+.bs-callout .highlight {
+    background-color: #fff;
+}
+
+/* Themes for different contexts */
+.bs-callout-danger {
+    background-color: #fcf2f2;
+    border-color: #dFb5b4;
+}
+.bs-callout-warning {
+    background-color: #fefbed;
+    border-color: #f1e7bc;
+}
+.bs-callout-info {
+    background-color: #f0f7fd;
+    border-color: #d0e3f0;
+}

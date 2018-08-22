@@ -1,0 +1,8 @@
+# Ignore tudo:
+*
+
+# Exceto
+!.gitignore
+!development.php
+!homologation.php
+!production.php

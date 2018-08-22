@@ -1,0 +1,32 @@
+<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+<?php
+
+$msgs = $this->flashMessenger()->getMessages();
+foreach ($msgs as $msg) :
+    ?>
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span>
+        </button>
+        <i class="glyphicon glyphicon-exclamation-sign text-warning"></i> <strong><?php echo $msg; ?></strong>
+    </div>
+
+<?php endforeach; ?>
+
+<div class="container" style="padding-top: 25px;">
+    <div class="col-xs-12 text-center">
+        <h2>Teste para Desenvolvedor Fullstack</h2>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <p>
+            Para visualizar a lista de clientes navege pelo menu acima.
+        </p>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="pt_BR" data-type="vertical" data-theme="dark" data-vanity="marcelocs81"><a class="LI-simple-link" href='https://br.linkedin.com/in/marcelocs81?trk=profile-badge'>Marcelo Souza</a></div>
+    </div>
+
+
+</div>

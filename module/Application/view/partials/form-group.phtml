@@ -1,0 +1,60 @@
+<?php
+
+$fieldset = $this->fieldset;
+
+$html = $this->html;
+if(null === $html){
+    $html = '';
+}
+
+$htmlLabel = $this->htmlLabel;
+if(null === $htmlLabel){
+    $htmlLabel = '';
+}
+
+$showFirstElementError = $this->showFirstElementError;
+if(null === $showFirstElementError){
+    $showFirstElementError = true;
+}
+
+$divClass = $this->divClass;
+if(null === $divClass){
+    $divClass = ' col-xs-12 col-sm-12 col-md-6 col-lg-6 ';
+}
+
+$isTextArea = false;
+$maxlength  = $fieldset->getAttribute('maxlength');
+
+if($fieldset instanceof \Zend\Form\Element\Textarea){
+    $isTextArea = true;
+
+    if($fieldset->hasAttribute('class')){
+        $class = $fieldset->getAttribute('class');
+        if(false === stripos($class, 'maxlength')){
+            $class .= ' maxlength';
+            $fieldset->setAttribute('class', $class);
+        }
+    }else{
+        $fieldset->setAttribute('class', 'maxlength');
+    }
+
+}
+
+$isTextArea = false;
+
+?>
+
+<div class="form-group <?php echo $divClass; ?>  <?php echo $this->formElementErrors($fieldset) ? 'has-error' : ''; ?>">
+    <div class="col-sm-12">
+        <?php echo $this->formLabel($fieldset); ?></div>
+    <div class="col-sm-12">
+        <?php echo $this->formElement($fieldset); ?>
+    </div>
+    <div class="help-block"><?php echo $this->formElementErrors($fieldset); ?></div>
+    <?php if ($isTextArea && null !== $maxlength && is_int($maxlength) && $maxlength > 0) : ?>
+        <span class="countdown">
+            Caracteres restantes
+            <span class="content-countdown" title="<?php echo $maxlength; ?>"><?php echo ($maxlength - strlen($fieldset->getValue())); ?></span>
+        </span>
+    <?php endif; ?>
+</div>

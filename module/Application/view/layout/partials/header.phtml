@@ -1,0 +1,45 @@
+<?php echo $this->headTitle($this->config('owner'))->setSeparator(' - ')->setAutoEscape(FALSE) ?>
+
+    <script type="text/javascript" language="javascript">
+        window.baseUrl = "<?php echo BASE_URL; ?>";
+        window.lang = '<?php echo \Locale::getDefault(); ?>';
+
+        var traducaoData = {};
+    </script>
+
+<?php echo $this->headMeta()
+    ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+    ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+?>
+
+    <!-- Scripts -->
+<?php
+
+echo $this->headScript()
+    ->prependScript("var basePath = '" . $this->basePath() . "'")
+    ->prependFile($this->basePath() . '/js/app.js?' . VERSAO_ATUALIZACAO)
+    ->prependFile($this->basePath() . '/js/masks.js?' . VERSAO_ATUALIZACAO)
+    ->prependFile($this->basePath() . '/library/util/jquery.mask.js?' . VERSAO_ATUALIZACAO)
+    ->prependFile($this->basePath() . '/library/jquery/ext/jquery.maskedinput.min.js?' . VERSAO_ATUALIZACAO)
+    ->prependFile($this->basePath() . '/library/jquery/jquery-1.12.4.js?' . VERSAO_ATUALIZACAO)
+
+    // Data-Table
+    ->appendFile($this->basePath() . '/library/data-tables/common/createDefaultDataTable.js?' . VERSAO_ATUALIZACAO)
+    ->appendFile($this->basePath() . '/library/data-tables/common/plugin/sorting/pt-BR_date.js?' . VERSAO_ATUALIZACAO)
+
+    ->appendFile($this->basePath() . '/library/bootstrap-3.3.7/js/bootstrap.js?' . VERSAO_ATUALIZACAO)
+    ->appendFile($this->basePath() . '/library/data-tables/DataTables-1.10.15/js/jquery.dataTables.js?' . VERSAO_ATUALIZACAO)
+    ->appendFile($this->basePath() . '/library/data-tables/DataTables-1.10.15/js/dataTables.bootstrap.js?' . VERSAO_ATUALIZACAO)
+    ->appendFile($this->basePath() . '/library/data-tables/Responsive-2.1.1/js/dataTables.responsive.js?' . VERSAO_ATUALIZACAO)
+;
+
+
+echo $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/assets/img/favicon.ico'])
+//    ->prependStylesheet($this->basePath() . '/css/main.css')
+    ->prependStylesheet($this->basePath() . '/library/bootstrap-3.3.7/css/bootstrap.min.css')
+    ->prependStylesheet($this->basePath() . '/library/jquery/css/jquery-ui.min.css')
+    ->appendStylesheet($this->basePath() . '/library/data-tables/datatables.css?' . VERSAO_ATUALIZACAO)
+    ->appendStylesheet($this->basePath() . '/css/style-essentia.css?' . VERSAO_ATUALIZACAO)
+;
+
+?>

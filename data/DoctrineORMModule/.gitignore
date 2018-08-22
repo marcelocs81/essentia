@@ -1,0 +1,6 @@
+# Ignore tudo:
+*
+
+# Exceto
+!.gitignore
+!Proxy

@@ -1,0 +1,28 @@
+<div>
+    <ul style="margin-top: 10px" class="menu-lang pull-right no-padding">
+        <li>
+            <img src="/images/flags/lang/<?= $localeSelecionado ?>.png" />
+            <img src="/images/icons/arrow/bottom-white.png" />
+            <ul>
+                <?php
+                foreach(\Application\Form\PickList\LocalePicklist::getArray() as $locale):
+                    if ($locale == $localeSelecionado) {
+                        continue;
+                    }
+                    ?>
+
+                    <li class="item-lang">
+                        <a href="?lang=<?= $locale ?>" style="display: block; box-sizing: content-box">
+                            <img src="/images/flags/lang/<?= $locale ?>.png" />
+                        </a>
+                    </li>
+
+                <?php endforeach ?>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<?= $this->partial('layout/partials/topo-public.phtml'); ?>
+
+<?= $this->partial('layout/partials/topo-cabecalho.phtml'); ?>

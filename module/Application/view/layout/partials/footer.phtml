@@ -1,0 +1,69 @@
+<div class="footer scroll-left-fixed">
+    <div class="container">
+        <?php
+
+    foreach ($this->identity()->menus as $chave => $menuRaiz):
+        if($chave != 'Admin'):
+            foreach ($menuRaiz as $chave => $menusNivel2): ?>
+                <?php
+                list($moduloTmp, $controllerTmp, $actionTmp, $iconeTmp, $nomeTmp, $rotaTmp, $idTmp) = explode("/", $chave);
+                $controllerTmp = str_replace("Controller", "", $controllerTmp);
+
+                $columnsWidth = 100;
+                if($this->qntMenusRodape > 0){
+                    $columnsWidth = 100 / $this->qntMenusRodape;
+                }
+
+                // O menu HOME não será listado
+                if(strtoupper($nomeTmp) !== 'HOME' && (count($menusNivel2) > 0 || $rotaTmp != '#' ) ) :?>
+                    <div class="col-xs-1" style="width: <?= $columnsWidth . '%' ?>" name="<?php echo $rotaTmp.'--'.$nomeTmp; ?>">
+                        <!-- Menu nível 1 -->
+                        <h1>
+                            <a id="menu_<?php echo $idTmp; ?>" href="<?php echo $this->url($rotaTmp, array("action" => $actionTmp)); ?>" class="menu">
+                                <?php echo mb_strtoupper($this->translate($nomeTmp)); ?>
+                            </a>
+                        </h1>
+                        <!-- Fim menu nível 1 -->
+                        <!-- Menu nível 2 -->
+                        <?php if (count($menusNivel2)): ?>
+                            <ul class="sub-menus">
+                                <?php foreach ($menusNivel2 as $chave2 => $menuNivel3): ?>
+                                    <?php
+                                    list($moduloTmp2, $controllerTmp2, $actionTmp2, $iconeTmp2, $nomeTmp2, $rotaTmp2, $idTmp2) = explode("/", $chave2);
+                                    $controllerTmp2 = str_replace("Controller", "", $controllerTmp2);
+                                    ?>
+                                    <li>
+                                        <a id="submenu_<?php echo $idTmp2; ?>" href="<?php echo $this->url(str_replace('\\', '/', $rotaTmp2), array("action" => $actionTmp2)); ?>"><?php echo $this->translate($nomeTmp2) ?></a>
+                                    </li>
+                                    <!-- Menu nível 3 -->
+                                    <?php if(count($menuNivel3)): ?>
+                                        <ul class="sub-menus" style="margin-left: 10px">
+                                            <?php foreach ($menuNivel3 as $item): ?>
+                                                <?php
+                                                list($moduloTmp3, $controllerTmp3, $actionTmp3, $iconeTmp3, $nomeTmp3, $rotaTmp3, $idTmp3) = explode("/", $item);
+                                                $controllerTmp3 = str_replace("Controller", "", $controllerTmp3);
+                                                ?>
+                                                <li>
+                                                    <a id="submenu_<?php echo $idTmp3; ?>" href="<?php echo $this->url(str_replace('\\', '/', $rotaTmp3), array("action" => $actionTmp3)); ?>">
+                                                        <?php echo $this->translate($nomeTmp3) ?>
+                                                    </a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
+                                    <!-- Fim menu nível 3 -->
+                                <?php endforeach ?>
+                            </ul>
+                        <?php endif ?>
+                        <!-- Fim menu nível 2 -->
+                    </div>
+                <?php endif; ?>
+            <?php endforeach ?>
+        <?php endif; ?>
+    <?php endforeach ?>
+
+    </div>
+    <div class="container">
+        <hr/>
+    </div>
+</div>

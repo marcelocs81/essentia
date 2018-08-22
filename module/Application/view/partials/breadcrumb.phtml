@@ -1,0 +1,47 @@
+<ul class="breadcrumb" itemprop="breadcrumb" xmlns="http://www.w3.org/1999/html">
+
+    <div class="container">
+        <div class="col-md-12 breadcrumb-line">
+                <span class="page-map"><?php echo $this->translate("Você está em") ?>: </span>
+                <ul>
+                    <?php
+                    /** @var \Application\ValueObject\Breadcrumb\Item $breadcrumbItem */
+                    foreach ($this->breadcrumbItens as $key => $breadcrumbItem):
+
+                        if ($breadcrumbItem->getType() != \Application\ValueObject\Breadcrumb\Type::PREVIOUS_PAGE) {
+                            continue;
+                        }
+
+                        ?>
+
+                        <li>
+                            <strong>
+                                <a class="breadcrumb-previous-page" href="<?= $this->url($breadcrumbItem->getRoute()) ?>"><?= $breadcrumbItem->getText() ?></a>
+                            </strong>
+                        </li>
+
+                        <li>
+                            <span class="breadcrumb-divisor"> / </span>
+                        </li>
+
+
+                    <?php endforeach ?>
+
+                    <?php
+                    foreach ($breadcrumbItens as $breadcrumbItem):
+                        if ($breadcrumbItem->getType() != \Application\ValueObject\Breadcrumb\Type::ACTUAL_PAGE) {
+                            continue;
+                        } ?>
+
+                        <li>
+                            <strong>
+                                <a class="breadcrumb-actual-page" style="text-decoration: none;"><?= $breadcrumbItem->getText() ?></a>
+                            </strong>
+                        </li>
+
+                    <?php endforeach ?>
+
+                </ul>
+        </div>
+    </div>
+</ul>

@@ -1,0 +1,27 @@
+<ul class="breadcrumb" itemprop="breadcrumb">
+
+    <div class="container">
+        <div class="col-md-12">
+            <span class="page-map"><?php echo $this->translate("Você está em") ?>: </span>
+            <ul>
+                <?php foreach ($this->pages as $key => $page): ?>
+
+                    <?php if ($key < count($this->pages) - 1): ?>
+                        <li>
+                            <strong>
+                                <a href="<?php echo $page->getHref(); ?>"><?php echo $page->getLabel(); ?></a>
+                            </strong>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <strong>
+                                <a style="text-decoration: none;"><?php echo $page->getLabel(); ?></a>
+                            </strong>
+                        </li>
+                    <?php endif; ?>
+
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+</ul>

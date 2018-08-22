@@ -1,0 +1,11 @@
+<?php
+
+return [
+    'invokables' => [
+
+    ],
+
+    'factories'  => [
+
+    ]
+];
